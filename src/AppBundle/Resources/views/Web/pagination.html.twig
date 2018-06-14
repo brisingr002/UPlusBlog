@@ -1,0 +1,42 @@
+
+<div id="page-listing" class="pull-right">
+
+    {# FIRST PAGE REF #}
+    {% if currentPageNumber == 1 %}
+        <span>{{ currentPageNumber }}</span>
+    {% else %}
+        <a href="{{ path(url, params|default({})|merge({"currentPageNumber": 1})) }}">1</a>
+    {% endif %}
+
+    {# FIRST PAGE DOTS #}
+    {% if currentPageNumber >= 5 %}
+        <span>...</span>
+    {% endif %}
+
+    {# SET VARIABLES #}
+    {% set c = currentPageNumber - 2 %}
+    {% if c <= 1 %}
+        {% set c = 2 %}
+    {% endif %}
+
+    {# PAGE LISTING #}
+    {% for i in 0..5 %}
+        {% if c == currentPageNumber %}
+            <span>{{ currentPageNumber }}</span>
+        {% elseif c < totalNumberOfPages %}
+            <a href="{{ path(url, params|default({})|merge({"currentPageNumber": c})) }}">{{ c }}</a>
+        {% endif %}
+
+        {% set c = c + 1 %}
+    {% endfor %}
+
+    {# DOTS TO LAST PAGE #}
+    {% if c < totalNumberOfPages %}
+        <span>...</span>
+    {% endif %}
+
+    {# LAST PAGE REF #}
+    {% if currentPageNumber != totalNumberOfPages %}
+        <a href="{{ path(url, params|default({})|merge({"currentPageNumber": totalNumberOfPages })) }}">{{ totalNumberOfPages }}</a>
+    {% endif %}
+</div>

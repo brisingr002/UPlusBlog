@@ -1,0 +1,13 @@
+admin:
+    resource: '@AppBundle/Controller/Admin'
+    type: annotation
+    prefix: '/admin'
+
+api:
+    resource: '@AppBundle/Controller/Api'
+    type: annotation
+    prefix: '/api'
+
+app:
+    resource: '@AppBundle/Controller/Web'
+    type: annotation

@@ -1,0 +1,31 @@
+{% extends '@App/Admin/layout.html.twig' %}
+
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/app/admin/js/tinymce/tinymce.min.js') }}"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Edit post</h4>
+                    <p class="card-description">
+                        Number of views: {{ post.numberOfViews }}
+                    </p>
+
+                    {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
